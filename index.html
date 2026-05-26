@@ -298,6 +298,12 @@ h2.wtitle b{color:var(--gold);}
 .sc-grp{display:flex; align-items:center; gap:8px; font-weight:800;}
 .sc-grp .btn{min-width:46px; text-align:center; font-size:18px;}
 .study-words{text-align:center; font-weight:900; font-size:20px; margin:6px 0 2px;}
+.lcd-big{font-size:46px; max-width:260px; margin:8px auto;}
+.hand-legend{display:flex; gap:16px; justify-content:center; flex-wrap:wrap; font-weight:700; font-size:12.5px; color:var(--ink-soft); margin:8px 0 2px;}
+.hand-legend .dot{display:inline-block; width:12px; height:12px; border-radius:50%; vertical-align:-1px; margin-right:4px;}
+.hand-legend .dot.blue{background:#3d9bff;} .hand-legend .dot.dark{background:#23263d;}
+.clock-mini{display:flex; justify-content:center; margin:2px 0 4px;} .clock-mini .clockface{width:128px;}
+.study-mini-lbl{text-align:center; font-weight:700; font-size:12px; color:var(--ink-soft); margin-top:8px;}
 /* ---- Horax: reloj y opciones ---- */
 .read-box{background:var(--panel-2); border:3px solid var(--line); border-radius:12px; padding:14px 16px; text-align:left; font-weight:700; line-height:1.6; margin:0 auto 14px; max-width:540px; box-shadow: inset 3px 3px 0 rgba(255,255,255,.6);}
 .read-box .rt{font-family:var(--pixel); font-weight:700; color:var(--purple-d); font-size:14px; display:block; margin-bottom:6px;}
@@ -518,21 +524,33 @@ function fromPartes(level){ var L= level==='facil'?PARTES_FACIL : level==='medio
 
 /* ===== MOTOR ===== */
 /* --- ESTUDIO: reloj interactivo --- */
-var STUDY={h:3,m:0,kind:'analog'};
-function studyClock(kind){ STUDY.kind=kind; studyRender(); window.scrollTo(0,0); }
-function studyAdjH(d){ STUDY.h=((STUDY.h-1+d+12)%12)+1; sfx('tap'); studyRender(); }
-function studyAdjM(d){ STUDY.m=((STUDY.m+d)%60+60)%60; sfx('tap'); studyRender(); }
-function studyRender(){ var h=STUDY.h,m=STUDY.m,kind=STUDY.kind;
-  var clock='<div class="clockwrap">'+clockSVG(h,m)+'</div>';
-  var lcd='<div class="lcd" style="max-width:210px;margin:8px auto">'+digitalStr(h,m)+'</div>';
-  var words='<div class="study-words">'+cap(timePhrase(h,m))+'</div>';
-  var ctrl='<div class="study-ctrl"><div class="sc-grp"><span>Hora</span><div class="btn ghost sm" onclick="studyAdjH(-1)">-</div><div class="btn ghost sm" onclick="studyAdjH(1)">+</div></div><div class="sc-grp"><span>Minutos</span><div class="btn ghost sm" onclick="studyAdjM(-5)">-</div><div class="btn ghost sm" onclick="studyAdjM(5)">+</div></div></div>';
-  var primary= kind==='digital' ? (lcd+clock) : (clock+lcd);
-  var tip= kind==='digital' ? 'Cambia los números con los botones y mira cómo se mueven las agujas.' : 'Mueve las agujas con los botones y aprende a leer la hora.';
-  var ttl='Tu reloj '+(kind==='digital'?'digital':'analógico');
-  $("screen").innerHTML=backBar(ttl)+'<div class="panel block"><h2>'+ttl+'</h2><p class="sub">'+tip+'</p>'+primary+words+ctrl+'</div>';
+var STUDY_KIND='analog';
+var ANALOG={h:3,m:30}, DIGITAL={h:15,m:30};
+function studyClock(kind){ STUDY_KIND=kind; studyRender(); window.scrollTo(0,0); }
+function aAdjH(d){ ANALOG.h=((ANALOG.h-1+d+12)%12)+1; sfx('tap'); studyRender(); }
+function aAdjM(d){ ANALOG.m=((ANALOG.m+d)%60+60)%60; sfx('tap'); studyRender(); }
+function dAdjH(d){ DIGITAL.h=((DIGITAL.h+d)%24+24)%24; sfx('tap'); studyRender(); }
+function dAdjM(d){ DIGITAL.m=((DIGITAL.m+d)%60+60)%60; sfx('tap'); studyRender(); }
+function to12(h){ return ((h+11)%12)+1; }
+function dayPart(h){ if(h===12) return 'del mediodía'; if(h>=5&&h<12) return 'de la mañana'; if(h>=13&&h<=20) return 'de la tarde'; return 'de la noche'; }
+function studyRender(){
+  if(STUDY_KIND==='digital'){
+    var h=DIGITAL.h,m=DIGITAL.m;
+    var lcd='<div class="lcd lcd-big">'+pad2(h)+':'+pad2(m)+'</div>';
+    var words='<div class="study-words">'+cap(timePhrase(to12(h),m))+' '+dayPart(h)+'</div>';
+    var mini='<div class="clock-mini">'+clockSVG(to12(h),m)+'</div>';
+    var ctrl='<div class="study-ctrl"><div class="sc-grp"><span>Horas (0-23)</span><div class="btn ghost sm" onclick="dAdjH(-1)">-</div><div class="btn ghost sm" onclick="dAdjH(1)">+</div></div><div class="sc-grp"><span>Minutos</span><div class="btn ghost sm" onclick="dAdjM(-5)">-</div><div class="btn ghost sm" onclick="dAdjM(5)">+</div></div></div>';
+    $("screen").innerHTML=backBar('Tu reloj digital')+'<div class="panel block"><h2>Tu reloj digital</h2><p class="sub">Cambia los números. ¡Aquí la hora va de 0 a 23 (horario de 24 horas)!</p>'+lcd+words+'<div class="study-mini-lbl">El mismo momento en el reloj de agujas:</div>'+mini+ctrl+'</div>';
+  } else {
+    var h=ANALOG.h,m=ANALOG.m;
+    var clock='<div class="clockwrap">'+clockSVG(h,m)+'</div>';
+    var legend='<div class="hand-legend"><span><i class="dot blue"></i> aguja corta = la hora</span><span><i class="dot dark"></i> aguja larga = los minutos</span></div>';
+    var words='<div class="study-words">'+cap(timePhrase(h,m))+'</div>';
+    var ctrl='<div class="study-ctrl"><div class="sc-grp"><span>Hora</span><div class="btn ghost sm" onclick="aAdjH(-1)">-</div><div class="btn ghost sm" onclick="aAdjH(1)">+</div></div><div class="sc-grp"><span>Minutos</span><div class="btn ghost sm" onclick="aAdjM(-5)">-</div><div class="btn ghost sm" onclick="aAdjM(5)">+</div></div></div>';
+    $("screen").innerHTML=backBar('Tu reloj analógico')+'<div class="panel block"><h2>Tu reloj analógico</h2><p class="sub">Mueve las agujas y aprende a leer la hora.</p>'+clock+legend+words+ctrl+'</div>';
+  }
 }
-var QUIZ=null;
+
 function goHome(){ QUIZ=null; renderHome(); window.scrollTo(0,0); }
 function refreshChip(){ $("chipAv").innerHTML=avatarSVG(DATA.avatar); $("chipName").textContent=DATA.name||"Jugador"; $("chipMedals").textContent=unlockedCount(); }
 function backBar(t){ return '<div class="back-bar"><div class="btn ghost sm" onclick="goHome()">⟵ Inicio</div><div class="qmeta" style="font-size:13px">'+escapeHtml(t)+'</div></div>'; }
