@@ -551,6 +551,7 @@ function studyRender(){
   }
 }
 
+var QUIZ=null;
 function goHome(){ QUIZ=null; renderHome(); window.scrollTo(0,0); }
 function refreshChip(){ $("chipAv").innerHTML=avatarSVG(DATA.avatar); $("chipName").textContent=DATA.name||"Jugador"; $("chipMedals").textContent=unlockedCount(); }
 function backBar(t){ return '<div class="back-bar"><div class="btn ghost sm" onclick="goHome()">⟵ Inicio</div><div class="qmeta" style="font-size:13px">'+escapeHtml(t)+'</div></div>'; }
