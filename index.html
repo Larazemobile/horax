@@ -293,6 +293,11 @@ h2.wtitle b{color:var(--gold);}
 
 .clockwrap{display:flex; justify-content:center; margin:2px auto 14px;}
 .clockface{width:200px; max-width:64vw; height:auto;}
+.lcd{font-family:'Courier New',monospace; font-weight:700; font-size:30px; background:#14210f; color:#7CFC58; border:3px solid #23263d; border-radius:8px; padding:8px; letter-spacing:2px; text-align:center;}
+.study-ctrl{display:flex; gap:18px; justify-content:center; margin-top:14px; flex-wrap:wrap;}
+.sc-grp{display:flex; align-items:center; gap:8px; font-weight:800;}
+.sc-grp .btn{min-width:46px; text-align:center; font-size:18px;}
+.study-words{text-align:center; font-weight:900; font-size:20px; margin:6px 0 2px;}
 /* ---- Horax: reloj y opciones ---- */
 .read-box{background:var(--panel-2); border:3px solid var(--line); border-radius:12px; padding:14px 16px; text-align:left; font-weight:700; line-height:1.6; margin:0 auto 14px; max-width:540px; box-shadow: inset 3px 3px 0 rgba(255,255,255,.6);}
 .read-box .rt{font-family:var(--pixel); font-weight:700; color:var(--purple-d); font-size:14px; display:block; margin-bottom:6px;}
@@ -512,6 +517,21 @@ var PARTES_DIFICIL=[
 function fromPartes(level){ var L= level==='facil'?PARTES_FACIL : level==='medio'?PARTES_MEDIO : PARTES_DIFICIL; var out=[]; for(var i=0;i<L.length;i++) out.push({q:L[i].q,opts:L[i].opts.slice(),a:L[i].a,mode:'partes'}); return out; }
 
 /* ===== MOTOR ===== */
+/* --- ESTUDIO: reloj interactivo --- */
+var STUDY={h:3,m:0,kind:'analog'};
+function studyClock(kind){ STUDY.kind=kind; studyRender(); window.scrollTo(0,0); }
+function studyAdjH(d){ STUDY.h=((STUDY.h-1+d+12)%12)+1; sfx('tap'); studyRender(); }
+function studyAdjM(d){ STUDY.m=((STUDY.m+d)%60+60)%60; sfx('tap'); studyRender(); }
+function studyRender(){ var h=STUDY.h,m=STUDY.m,kind=STUDY.kind;
+  var clock='<div class="clockwrap">'+clockSVG(h,m)+'</div>';
+  var lcd='<div class="lcd" style="max-width:210px;margin:8px auto">'+digitalStr(h,m)+'</div>';
+  var words='<div class="study-words">'+cap(timePhrase(h,m))+'</div>';
+  var ctrl='<div class="study-ctrl"><div class="sc-grp"><span>Hora</span><div class="btn ghost sm" onclick="studyAdjH(-1)">-</div><div class="btn ghost sm" onclick="studyAdjH(1)">+</div></div><div class="sc-grp"><span>Minutos</span><div class="btn ghost sm" onclick="studyAdjM(-5)">-</div><div class="btn ghost sm" onclick="studyAdjM(5)">+</div></div></div>';
+  var primary= kind==='digital' ? (lcd+clock) : (clock+lcd);
+  var tip= kind==='digital' ? 'Cambia los números con los botones y mira cómo se mueven las agujas.' : 'Mueve las agujas con los botones y aprende a leer la hora.';
+  var ttl='Tu reloj '+(kind==='digital'?'digital':'analógico');
+  $("screen").innerHTML=backBar(ttl)+'<div class="panel block"><h2>'+ttl+'</h2><p class="sub">'+tip+'</p>'+primary+words+ctrl+'</div>';
+}
 var QUIZ=null;
 function goHome(){ QUIZ=null; renderHome(); window.scrollTo(0,0); }
 function refreshChip(){ $("chipAv").innerHTML=avatarSVG(DATA.avatar); $("chipName").textContent=DATA.name||"Jugador"; $("chipMedals").textContent=unlockedCount(); }
@@ -529,6 +549,8 @@ function renderHome(){ var s=DATA.stats, medals=unlockedCount();
    +modeCard("var(--green)","target","Analógico y digital","Pásalo a números","selDigital()")
    +modeCard("var(--orange)","bolt","¿Cuánto falta?","Suma y resta tiempo","selFalta()")
    +modeCard("var(--pink)","sun","Partes del día","Mañana, tarde, noche","selPartes()")
+   +modeCard("var(--teal)","clock","Tu reloj analógico","Aprende a usarlo","studyClock('analog')")
+   +modeCard("var(--red)","target","Tu reloj digital","Aprende a usarlo","studyClock('digital')")
    +modeCard("var(--gold)","trophy","Examen","Pon a prueba lo aprendido","selExam()")
    +modeCard("var(--teal)","star","Medallas","Mira tus logros","renderMedallas()")
    +modeCard("var(--blue)","brain","Progreso","Tu mapa de estrellas","renderProgress()")
