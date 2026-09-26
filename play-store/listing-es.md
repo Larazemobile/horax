@@ -9,7 +9,7 @@
 - Contiene anuncios: No
 - Público objetivo: 6–8, 9–12
 - Correo de contacto: `orbitakidx@gmail.com`
-- Política de privacidad: `https://horax-sigma.vercel.app/privacy.html`
+- Política de privacidad: `https://horaxapp-orbitakidx.vercel.app/privacy.html`
 
 ## Descripción breve
 
