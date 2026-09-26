@@ -1,0 +1,14 @@
+{
+  "appId": "com.orbitakidx.horax",
+  "appName": "Horax",
+  "webDir": "www",
+  "backgroundColor": "#ffad66",
+  "server": {
+    "androidScheme": "https"
+  },
+  "android": {
+    "allowMixedContent": false,
+    "captureInput": true,
+    "backgroundColor": "#ffad66"
+  }
+}
