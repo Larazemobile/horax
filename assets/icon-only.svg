@@ -28,13 +28,4 @@
     <path d="M0 50 17 17 50 0 17-17 0-50-17-17-50 0-17 17Z" opacity="0.96"/>
     <circle cx="96" cy="58" r="14" opacity="0.8"/>
   </g>
-  <g transform="translate(760 760)" filter="url(#shadow)">
-    <circle r="122" fill="#ffffff" stroke="#252844" stroke-width="24"/>
-    <g stroke="#252844" stroke-width="10" stroke-linecap="round">
-      <path d="M0-86V-71M86 0H71M0 86V71M-86 0H-71"/>
-    </g>
-    <path d="M0 0V-58" stroke="#252844" stroke-width="17" stroke-linecap="round"/>
-    <path d="M0 0 45 37" stroke="#3d9bff" stroke-width="22" stroke-linecap="round"/>
-    <circle r="15" fill="#ff5d6c" stroke="#252844" stroke-width="7"/>
-  </g>
 </svg>
