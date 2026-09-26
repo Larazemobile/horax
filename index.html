@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Horax — ÓrbitaKidx</title>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><circle cx='24' cy='24' r='20' fill='%233aa0ff' stroke='%2315172a' stroke-width='3'/><circle cx='17' cy='17' r='6' fill='%2346c66e'/><circle cx='31' cy='29' r='7' fill='%2346c66e'/><circle cx='17' cy='32' r='4' fill='%2346c66e'/><ellipse cx='17' cy='15' rx='5' ry='3' fill='%23ffffff' opacity='0.5'/></svg>">
-<meta name="theme-color" content="#8fc1ff">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><circle cx='24' cy='24' r='20' fill='%23ff914d' stroke='%2315172a' stroke-width='3'/><circle cx='17' cy='17' r='6' fill='%23ffd34d'/><circle cx='31' cy='29' r='7' fill='%23ffd34d'/><circle cx='17' cy='32' r='4' fill='%23ffd34d'/><ellipse cx='17' cy='15' rx='5' ry='3' fill='%23ffffff' opacity='0.5'/></svg>">
+<meta name="theme-color" content="#ffad66">
 <meta name="apple-mobile-web-app-title" content="Horax">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +13,7 @@
 <style>
 /* ====================== TOKENS ====================== */
 :root{
-  --sky1:#6fb7ff; --sky2:#bfe6ff;
+  --sky1:#ffd078; --sky2:#ffd9b0;
   --grass:#5fb12b; --grass-d:#3f7d1c;
   --dirt:#7a4a25;
   --ink:#202338; --ink-soft:#4a4e6b;
@@ -35,7 +35,7 @@
 html,body{height:100%;}
 body{
   margin:0; font-family:var(--body); font-weight:500; color:var(--ink);
-  background: linear-gradient(170deg, #8fc1ff 0%, #aec2ff 45%, #d6c9f6 100%);
+  background:linear-gradient(165deg,#ffd078 0%,#ff9f86 48%,#c9b5f4 100%);
   background-attachment:fixed;
   min-height:100%;
   -webkit-font-smoothing:antialiased;
@@ -313,17 +313,182 @@ h2.wtitle b{color:var(--gold);}
 .opt-btn:active{transform:translateY(2px);}
 .opt-btn.ok{background:#d7ffe6; border-color:var(--green); color:var(--green-d);}
 .opt-btn.bad{background:#ffe2de; border-color:var(--red); color:var(--red-d);}
-.opt-btn.dim{opacity:.5;}</style>
+.opt-btn.dim{opacity:.5;}
+.quiz-legend{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:-3px 0 12px;color:var(--ink-soft);font-size:12px;font-weight:700;}
+.quiz-legend span{display:inline-flex;align-items:center;gap:5px;background:var(--panel-2);border:1px solid #e0e3f0;border-radius:999px;padding:5px 9px;}
+.quiz-legend i{display:inline-block;width:11px;height:11px;border-radius:50%;}
+.quiz-legend .hour{background:#3d9bff;}.quiz-legend .minute{background:#252844;}
+.feedback-hint{display:block;margin-top:5px;color:var(--ink-soft);font-size:13px;line-height:1.35;}
+
+/* ====================== 2026 VISUAL REFRESH ====================== */
+:root{
+  --ink:#252844;
+  --ink-soft:#5d6280;
+  --line:#292d4c;
+  --panel-2:#f5f6ff;
+}
+body{
+  min-height:100dvh;
+  background:
+    radial-gradient(circle at 12% 8%,rgba(255,255,255,.42) 0 5%,transparent 18%),
+    radial-gradient(circle at 88% 22%,rgba(255,232,151,.34) 0 4%,transparent 17%),
+    linear-gradient(165deg,#ffd078 0%,#ff9f86 48%,#c9b5f4 100%);
+}
+.app-wrap{
+  padding-top:max(14px,env(safe-area-inset-top));
+  padding-bottom:max(30px,env(safe-area-inset-bottom));
+}
+.block{
+  border-width:2px;
+  border-radius:18px;
+  box-shadow:0 5px 0 rgba(35,39,67,.18),0 14px 30px rgba(47,50,105,.12),inset 1px 1px 0 rgba(255,255,255,.55);
+}
+.btn{
+  min-height:46px;
+  border-width:2px;
+  border-radius:14px;
+  box-shadow:0 4px 0 rgba(34,37,65,.22),inset 1px 1px 0 rgba(255,255,255,.35);
+  text-shadow:none;
+}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(34,37,65,.22);}
+.btn.ghost{background:rgba(255,255,255,.92);}
+.topbar{flex-wrap:nowrap;gap:8px;margin-bottom:14px;}
+.logo{gap:8px;min-width:0;}
+.logo .cube{width:40px;height:40px;filter:drop-shadow(0 4px 5px rgba(35,43,91,.2));}
+.logo h1{font-size:21px;text-shadow:0 2px 0 var(--ink),1px 0 0 var(--ink),-1px 0 0 var(--ink);}
+.topright{gap:8px;min-width:0;}
+.sound-btn{width:44px;height:44px;border-radius:14px;flex:none;}
+.profile-chip{gap:8px;padding:5px 10px 5px 6px;border-radius:16px;min-width:0;background:rgba(255,255,255,.94);}
+.profile-chip .av{width:38px;height:38px;border-width:2px;border-radius:11px;}
+.profile-chip .who{min-width:0;}
+.profile-chip .who .nm{max-width:92px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14px;}
+.profile-chip .who .md{font-size:11px;}
+.hero{
+  padding:20px 20px 38px;
+  border-color:rgba(41,45,76,.9);
+  background:linear-gradient(145deg,#fff 0%,#fff8f1 58%,#f8efff 100%);
+  overflow:hidden;
+}
+.hero::before{
+  content:"";
+  position:absolute;right:-24px;top:-18px;width:170px;height:100px;
+  background:radial-gradient(circle at 25% 65%,rgba(123,92,255,.11) 0 8px,transparent 9px),radial-gradient(circle at 56% 30%,rgba(61,155,255,.1) 0 12px,transparent 13px),radial-gradient(circle at 82% 74%,rgba(255,207,63,.16) 0 10px,transparent 11px);
+  transform:rotate(9deg);
+}
+.hero .big-av{width:78px;height:78px;border-width:2px;border-radius:18px;box-shadow:0 7px 16px rgba(45,52,110,.15);}
+.hero .htxt{position:relative;z-index:1;}
+.hero .htxt h2{font-size:24px;letter-spacing:-.4px;}
+.hero .htxt p{line-height:1.35;}
+.stat{border:1.5px solid #dfe2f2;border-radius:999px;background:#fff;padding:7px 11px;box-shadow:0 3px 8px rgba(45,52,110,.08);}
+.today-hearts{right:17px;bottom:10px;}
+.today-hearts svg{width:20px;height:19px;}
+.section-title{
+  width:max-content;max-width:100%;margin:22px auto 14px;padding:7px 14px;
+  border-radius:999px;background:rgba(37,40,68,.72);font-size:12px;letter-spacing:.9px;text-shadow:none;
+}
+.grid{gap:13px;}
+.card{
+  appearance:none;width:100%;font-family:var(--body);color:var(--ink);text-align:center;
+  background:#fff;min-height:174px;border-color:rgba(41,45,76,.88);
+}
+.card .top{height:6px;}
+.card .body{padding:18px 13px 20px;}
+.card .ic{
+  width:62px;height:62px;padding:11px;margin:0 auto 11px;border-radius:20px;
+  background:#f5f5ff;box-shadow:inset 0 0 0 1px rgba(41,45,76,.06);
+}
+.card h3{font-size:15px;margin-bottom:6px;}
+.card p{font-size:13px;line-height:1.3;}
+.card:nth-child(1) .body{background:linear-gradient(180deg,rgba(123,92,255,.07),transparent 55%);}
+.card:nth-child(2) .body{background:linear-gradient(180deg,rgba(55,200,113,.08),transparent 55%);}
+.card:nth-child(3) .body{background:linear-gradient(180deg,rgba(255,159,67,.09),transparent 55%);}
+.card:nth-child(4) .body{background:linear-gradient(180deg,rgba(255,111,174,.08),transparent 55%);}
+.card:nth-child(5) .body{background:linear-gradient(180deg,rgba(34,198,198,.08),transparent 55%);}
+.card:nth-child(6) .body{background:linear-gradient(180deg,rgba(255,107,94,.07),transparent 55%);}
+.panel,.qcard,.result-card{border-radius:20px;}
+.panel{padding:21px;}
+.panel h2{font-size:18px;}
+.tile,.pill{border-width:2px;border-radius:16px;box-shadow:0 4px 0 rgba(35,39,67,.13),inset 1px 1px 0 rgba(255,255,255,.7);}
+.chip{border-width:2px;border-radius:12px;}
+.quiz-head{align-items:stretch;}
+.qmeta{
+  color:var(--ink);text-shadow:none;background:rgba(255,255,255,.82);border:1px solid rgba(41,45,76,.12);
+  border-radius:999px;padding:6px 9px;font-size:11px;display:flex;align-items:center;
+}
+.progress{height:11px;border:0;background:rgba(255,255,255,.58);box-shadow:inset 0 2px 5px rgba(34,37,65,.13);}
+.progress .bar{border-radius:999px;background:linear-gradient(90deg,#3fcf79,#29c4c4);}
+.qcard{background:linear-gradient(180deg,#fff,#f8f8ff);}
+.clockwrap{margin:0 auto 12px;}
+.clockface{width:218px;filter:drop-shadow(0 8px 12px rgba(42,47,90,.13));}
+.q-text{font-size:20px;line-height:1.3;margin:8px 0 16px;}
+.opts{gap:11px;}
+.opt-btn{
+  appearance:none;width:100%;min-height:52px;border-width:2px;border-radius:14px;
+  box-shadow:0 4px 0 rgba(35,39,67,.15),inset 1px 1px 0 rgba(255,255,255,.7);
+}
+.opt-btn:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(35,39,67,.15);}
+.lcd{border-width:2px;border-radius:14px;box-shadow:inset 0 2px 10px rgba(0,0,0,.28),0 5px 16px rgba(35,39,67,.14);}
+.study-ctrl{gap:12px;}
+.sc-grp{background:var(--panel-2);border:1px solid #e2e4f0;border-radius:16px;padding:8px 10px;}
+.modal-bg{background:rgba(26,29,57,.64);backdrop-filter:blur(7px);}
+.modal{border-radius:24px;padding:25px;box-shadow:0 18px 60px rgba(15,18,48,.3);}
+.name-input{border-width:2px;border-radius:14px;outline:none;}
+.name-input:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(61,155,255,.18);}
+.av-opt{border-width:2px;border-radius:16px;}
+.footer-note{max-width:620px;margin:24px auto 0;line-height:1.45;color:rgba(37,40,68,.68);}
+.footer-pill{display:inline-block;background:rgba(255,255,255,.78);border:1px solid rgba(41,45,76,.1);border-radius:999px;padding:7px 14px;color:#3a3f63;font-size:12px;}
+body.playing .footer-note{display:none;}
+body.playing .topbar{margin-bottom:8px;}
+
+@media (max-width:480px){
+  .app-wrap{padding-left:10px;padding-right:10px;}
+  .logo .cube{width:36px;height:36px;}
+  .logo h1{font-size:18px;}
+  .sound-btn{width:40px;height:40px;}
+  .profile-chip{padding-right:8px;}
+  .profile-chip .av{width:34px;height:34px;}
+  .profile-chip .who .nm{max-width:66px;font-size:13px;}
+  .profile-chip .who .md{font-size:10px;}
+  .hero{padding:17px 14px 37px;}
+  .hero .big-av{width:62px;height:62px;}
+  .hero .htxt h2{font-size:20px;}
+  .hero .htxt p{font-size:13px;}
+  .stat{font-size:11px;padding:6px 8px;}
+  .stat b{font-size:11px;}
+  .today-hearts{position:static;flex:0 0 100%;justify-content:center;margin-top:2px;}
+  .grid{gap:11px;}
+  .card{min-height:162px;}
+  .card .body{padding:16px 10px 17px;}
+  .card .ic{width:55px;height:55px;padding:10px;border-radius:17px;}
+  .card h3{font-size:14px;}
+  .card p{font-size:12px;}
+  .panel{padding:17px 13px;}
+  .qcard{padding:16px 12px 18px;}
+  .clockface{width:184px;max-width:58vw;}
+  .q-text{font-size:18px;}
+  .opt-btn{min-height:48px;font-size:15px;padding:11px 12px;}
+  .lcd-big{font-size:40px;}
+  .sc-grp{width:100%;justify-content:center;}
+  body.playing .logo h1{font-size:16px;}
+  body.playing .logo .cube{width:32px;height:32px;}
+  body.playing .profile-chip .who .md{display:none;}
+  body.playing .profile-chip .av{width:30px;height:30px;}
+  body.playing .sound-btn{width:36px;height:36px;min-height:36px;}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;}
+}
+</style>
 </head>
 <body>
 <div class="app-wrap">
   <div class="topbar">
     <div class="logo" onclick="goHome()">
       <svg class="cube" viewBox="0 0 48 48">
-        <defs><radialGradient id="globeLogo" cx="38%" cy="30%" r="78%"><stop offset="0" stop-color="#a9e4ff"/><stop offset="45%" stop-color="#3aa0ff"/><stop offset="100%" stop-color="#1f56c8"/></radialGradient></defs>
+        <defs><radialGradient id="globeLogo" cx="38%" cy="30%" r="78%"><stop offset="0" stop-color="#fff4b8"/><stop offset="45%" stop-color="#ff9f43"/><stop offset="100%" stop-color="#d9584e"/></radialGradient></defs>
         <circle cx="24" cy="24" r="20" fill="url(#globeLogo)" stroke="#15172a" stroke-width="3"/>
-        <path d="M13 16 q4 -3 8 -1 q3 2 1 5 q-3 2 -6 1 q-4 -2 -3 -5z" fill="#46c66e" stroke="#2c9a4f" stroke-width="1"/>
-        <path d="M27 26 q6 -1 7 4 q1 4 -3 6 q-5 1 -7 -3 q-1 -4 3 -7z" fill="#46c66e" stroke="#2c9a4f" stroke-width="1"/>
+        <path d="M13 16 q4 -3 8 -1 q3 2 1 5 q-3 2 -6 1 q-4 -2 -3 -5z" fill="#ffd34d" stroke="#d99a17" stroke-width="1"/>
+        <path d="M27 26 q6 -1 7 4 q1 4 -3 6 q-5 1 -7 -3 q-1 -4 3 -7z" fill="#ffd34d" stroke="#d99a17" stroke-width="1"/>
         <ellipse cx="17" cy="15" rx="7" ry="4.4" fill="#ffffff" opacity="0.42" transform="rotate(-25 17 15)"/>
       </svg>
       <h1>Hora<b>x</b></h1>
@@ -339,7 +504,7 @@ h2.wtitle b{color:var(--gold);}
     </div>
   </div>
   <div id="screen"></div>
-  <div class="footer-note"><span style="display:inline-block;background:#fff;border:2px solid #e7e9f3;border-radius:999px;padding:5px 14px;color:#3a3f63;font-size:12px">🪐 Descubre el resto del <b>universo ÓrbitaKidx</b> · ¡sigue jugando y aprendiendo!</span><br><br>Una app de <b>ÓrbitaKidx</b><br><span style="font-size:11px">¿Tienes algo que decirnos? Escríbenos a <a href="mailto:orbitakidx@gmail.com" style="color:var(--blue-d);font-weight:700">orbitakidx@gmail.com</a></span></div>
+  <div class="footer-note"><span class="footer-pill">🪐 Descubre el universo <b>ÓrbitaKidx</b></span><br><br>Una app de <b>ÓrbitaKidx</b><br><span style="font-size:11px">¿Tienes algo que decirnos? Escríbenos a <a href="mailto:orbitakidx@gmail.com" style="color:var(--blue-d);font-weight:700">orbitakidx@gmail.com</a></span></div>
 </div>
 <div id="modalHost"></div>
 <div class="toast-wrap" id="toastHost"></div>
@@ -405,7 +570,7 @@ function sfx(type){ if(!soundOn()) return; try{ var AC=window.AudioContext||wind
   else if(type==='start'){ seq=[[392,0,.09],[523,.09,.09],[784,.18,.18]]; }
   else { seq=[[600,0,.08]]; }
   for(var i=0;i<seq.length;i++){ var n=seq[i], o=ctx.createOscillator(), g=ctx.createGain(); o.type=wave; o.frequency.value=n[0]; o.connect(g); g.connect(ctx.destination); var t0=ctx.currentTime+n[1]; g.gain.setValueAtTime(0.0001,t0); g.gain.exponentialRampToValueAtTime(0.22,t0+0.012); g.gain.exponentialRampToValueAtTime(0.0001,t0+n[2]); o.start(t0); o.stop(t0+n[2]+0.03); } }catch(e){} }
-function bigGlobeSVG(){ return '<svg viewBox="0 0 48 48" style="width:100%;height:100%"><defs><radialGradient id="wg" cx="38%" cy="30%" r="78%"><stop offset="0" stop-color="#a9e4ff"/><stop offset="45%" stop-color="#3aa0ff"/><stop offset="100%" stop-color="#1f56c8"/></radialGradient></defs><circle cx="24" cy="24" r="20" fill="url(#wg)" stroke="#15172a" stroke-width="3"/><path d="M13 16 q4 -3 8 -1 q3 2 1 5 q-3 2 -6 1 q-4 -2 -3 -5z" fill="#46c66e" stroke="#2c9a4f" stroke-width="1"/><path d="M27 26 q6 -1 7 4 q1 4 -3 6 q-5 1 -7 -3 q-1 -4 3 -7z" fill="#46c66e" stroke="#2c9a4f" stroke-width="1"/><ellipse cx="17" cy="15" rx="7" ry="4.4" fill="#ffffff" opacity="0.42" transform="rotate(-25 17 15)"/></svg>'; }
+function bigGlobeSVG(){ return '<svg viewBox="0 0 48 48" style="width:100%;height:100%"><defs><radialGradient id="wg" cx="38%" cy="30%" r="78%"><stop offset="0" stop-color="#fff4b8"/><stop offset="45%" stop-color="#ff9f43"/><stop offset="100%" stop-color="#d9584e"/></radialGradient></defs><circle cx="24" cy="24" r="20" fill="url(#wg)" stroke="#15172a" stroke-width="3"/><path d="M13 16 q4 -3 8 -1 q3 2 1 5 q-3 2 -6 1 q-4 -2 -3 -5z" fill="#ffd34d" stroke="#d99a17" stroke-width="1"/><path d="M27 26 q6 -1 7 4 q1 4 -3 6 q-5 1 -7 -3 q-1 -4 3 -7z" fill="#ffd34d" stroke="#d99a17" stroke-width="1"/><ellipse cx="17" cy="15" rx="7" ry="4.4" fill="#ffffff" opacity="0.42" transform="rotate(-25 17 15)"/></svg>'; }
 
 /* medallas */
 var ACHIEVEMENTS=[
@@ -415,7 +580,7 @@ var ACHIEVEMENTS=[
   {id:"combo10", name:"Combo x10", desc:"10 aciertos seguidos", tier:"silver", icon:"flame", cond:function(){return DATA.stats.bestStreak>=10;}},
   {id:"puntual", name:"En punto", desc:"20 aciertos leyendo la hora", tier:"silver", icon:"clock", cond:function(){return DATA.stats.leer.correct>=20;}},
   {id:"digi", name:"Reloj digital", desc:"20 aciertos analógico y digital", tier:"silver", icon:"target", cond:function(){return DATA.stats.digital.correct>=20;}},
-  {id:"calcula", name:"Calculatiempos", desc:"20 aciertos de ¿cuánto falta?", tier:"silver", icon:"bolt", cond:function(){return DATA.stats.falta.correct>=20;}},
+  {id:"calcula", name:"Viajero del tiempo", desc:"20 aciertos avanzando el reloj", tier:"silver", icon:"bolt", cond:function(){return DATA.stats.falta.correct>=20;}},
   {id:"dia", name:"Mañana, tarde y noche", desc:"20 aciertos de partes del día", tier:"silver", icon:"sun", cond:function(){return DATA.stats.partes.correct>=20;}},
   {id:"exper", name:"Examen perfecto", desc:"Saca 10 de 10 en un examen", tier:"gold", icon:"target", cond:function(){return DATA.stats.exams.perfect>=1;}},
   {id:"examen5", name:"Examinado", desc:"Completa 5 exámenes", tier:"silver", icon:"trophy", cond:function(){return DATA.stats.exams.completed>=5;}},
@@ -423,7 +588,7 @@ var ACHIEVEMENTS=[
   {id:"colecc", name:"Coleccionista", desc:"Consigue 8 medallas", tier:"gold", icon:"star", cond:function(){return unlockedCount()>=8;}},
   {id:"maraton", name:"Maratón del tiempo", desc:"Responde 200 preguntas", tier:"silver", icon:"infinity", cond:function(){return DATA.stats.totalAnswered>=200;}},
   {id:"combo20", name:"Combo x20", desc:"20 aciertos seguidos", tier:"gold", icon:"flame", cond:function(){return DATA.stats.bestStreak>=20;}},
-  {id:"maestro", name:"Domina el reloj", desc:"20 aciertos en leer, digital y cuánto falta", tier:"gold", icon:"trophy", cond:function(){return DATA.stats.leer.correct>=20&&DATA.stats.digital.correct>=20&&DATA.stats.falta.correct>=20;}}
+  {id:"maestro", name:"Domina el reloj", desc:"20 aciertos en leer, digital y avanzar el reloj", tier:"gold", icon:"trophy", cond:function(){return DATA.stats.leer.correct>=20&&DATA.stats.digital.correct>=20&&DATA.stats.falta.correct>=20;}}
 ];
 function unlockedCount(){ var c=0; for(var k in DATA.achievements) if(DATA.achievements[k]) c++; return c; }
 function checkAchievements(){ var nw=[]; for(var i=0;i<ACHIEVEMENTS.length;i++){ var a=ACHIEVEMENTS[i]; if(!DATA.achievements[a.id]&&a.cond()){ DATA.achievements[a.id]=true; nw.push(a); } } if(nw.length){ saveData(); nw.forEach(toast); } refreshChip(); return nw; }
@@ -466,18 +631,36 @@ function clockSVG(h,m){
   s+='</svg>';
   return s;
 }
-function genLeer(level){ var t=randTime(level); var correct=cap(timePhrase(t.h,t.m)); var opts=[correct],g=0;
-  while(opts.length<3 && g++<60){ var d=randTime(level); var p=cap(timePhrase(d.h,d.m)); if(opts.indexOf(p)<0) opts.push(p); }
-  shuffle(opts); return {clock:t,q:'¿Qué hora es?',opts:opts,a:opts.indexOf(correct),mode:'leer'}; }
-function genDigital(level){ var t=randTime(level); var correct=digitalStr(t.h,t.m); var opts=[correct],g=0;
-  while(opts.length<3 && g++<60){ var d=randTime(level); var p=digitalStr(d.h,d.m); if(opts.indexOf(p)<0) opts.push(p); }
-  shuffle(opts); return {clock:t,q:'¿Qué hora marca en números?',opts:opts,a:opts.indexOf(correct),mode:'digital'}; }
-function genFalta(level){ var t=randTime(level==='dificil'?'medio':'facil');
+function shiftedHour(h,d){ return ((h-1+d+12)%12)+1; }
+function addUnique(arr,value){ if(value&&arr.indexOf(value)<0) arr.push(value); }
+function readingDistractors(t,level){
+  var out=[];
+  addUnique(out,cap(timePhrase(shiftedHour(t.h,1),t.m)));
+  addUnique(out,cap(timePhrase(shiftedHour(t.h,-1),t.m)));
+  if(t.m===0) addUnique(out,cap(timePhrase(t.h,30)));
+  else if(t.m===30) addUnique(out,cap(timePhrase(t.h,0)));
+  else if(t.m===15) addUnique(out,cap(timePhrase(t.h,45)));
+  else if(t.m===45) addUnique(out,cap(timePhrase(t.h,15)));
+  else if(t.m<30) addUnique(out,cap(timePhrase(t.h,60-t.m)));
+  else addUnique(out,cap(timePhrase(t.h,60-t.m)));
+  var g=0; while(out.length<5&&g++<40){ var d=randTime(level),p=cap(timePhrase(d.h,d.m)); addUnique(out,p); }
+  return out;
+}
+function genLeer(level){ var t=randTime(level); var correct=cap(timePhrase(t.h,t.m)); var opts=[correct],pool=readingDistractors(t,level);
+  shuffle(pool); while(opts.length<3&&pool.length) addUnique(opts,pool.pop());
+  shuffle(opts); return {clock:t,q:'¿Qué hora es?',opts:opts,a:opts.indexOf(correct),mode:'leer',hint:'La aguja corta marca la hora y la larga marca los minutos.'}; }
+function genDigital(level){ var t=randTime(level), correct=digitalStr(t.h,t.m), opts=[correct];
+  addUnique(opts,digitalStr(shiftedHour(t.h,1),t.m));
+  addUnique(opts,digitalStr(shiftedHour(t.h,-1),t.m));
+  addUnique(opts,digitalStr(t.h,(t.m+15)%60));
+  shuffle(opts); opts=opts.slice(0,3); if(opts.indexOf(correct)<0) opts[0]=correct; shuffle(opts);
+  return {clock:t,q:'¿Qué hora marca en números?',opts:opts,a:opts.indexOf(correct),mode:'digital',hint:'Primero mira la aguja corta para la hora; después, la larga para los minutos.'}; }
+function genFalta(level){ var t=randTime(level);
   var deltas= level==='facil'?[15,30] : level==='medio'?[10,15,20,30] : [20,25,40,45];
   var delta=pick(deltas); var base=(t.h%12)*60+t.m; var correct=digFromMinutes(base+delta);
   var opts=[correct],offs=[15,-15,30,-30,60,-60,delta,-delta],g=0;
   while(opts.length<3 && g++<80){ var p=digFromMinutes(base+delta+pick(offs)); if(opts.indexOf(p)<0) opts.push(p); }
-  shuffle(opts); return {clock:t,q:'Son '+timePhrase(t.h,t.m)+'. ¿Qué hora será dentro de '+delta+' minutos?',opts:opts,a:opts.indexOf(correct),mode:'falta'}; }
+  shuffle(opts); return {clock:t,q:'Si ahora son '+timePhrase(t.h,t.m)+', ¿qué hora será dentro de '+delta+' minutos?',opts:opts,a:opts.indexOf(correct),mode:'falta',hint:'Avanza '+delta+' minutos desde '+timePhrase(t.h,t.m)+'.'}; }
 var PARTES_FACIL=[
  {q:'¿Cuándo desayunamos?',opts:['Por la mañana','Por la noche','A medianoche'],a:0},
  {q:'¿Cuándo cenamos?',opts:['Por la noche','Por la mañana','Al mediodía'],a:0},
@@ -552,10 +735,10 @@ function studyRender(){
 }
 
 var QUIZ=null;
-function goHome(){ QUIZ=null; renderHome(); window.scrollTo(0,0); }
+function goHome(){ QUIZ=null; document.body.classList.remove("playing"); renderHome(); window.scrollTo(0,0); }
 function refreshChip(){ $("chipAv").innerHTML=avatarSVG(DATA.avatar); $("chipName").textContent=DATA.name||"Jugador"; $("chipMedals").textContent=unlockedCount(); }
 function backBar(t){ return '<div class="back-bar"><div class="btn ghost sm" onclick="goHome()">⟵ Inicio</div><div class="qmeta" style="font-size:13px">'+escapeHtml(t)+'</div></div>'; }
-function modeCard(color,icon,title,sub,onclick){ return '<div class="card block" onclick="'+onclick+'"><div class="top" style="background:'+color+'"></div><div class="body"><div class="ic"><svg viewBox="0 0 24 24" style="width:100%;height:100%" fill="'+color+'">'+iconPath(icon)+'</svg></div><h3>'+title+'</h3><p>'+sub+'</p></div></div>'; }
+function modeCard(color,icon,title,sub,onclick){ return '<button type="button" class="card block" onclick="'+onclick+'" aria-label="'+escapeHtml(title)+': '+escapeHtml(sub)+'"><div class="top" style="background:'+color+'"></div><div class="body"><div class="ic"><svg viewBox="0 0 24 24" style="width:100%;height:100%" fill="'+color+'">'+iconPath(icon)+'</svg></div><h3>'+title+'</h3><p>'+sub+'</p></div></button>'; }
 function sessionsToday(){ var hoy=new Date().toISOString().slice(0,10); return (DATA.stats.lastDay===hoy)?(DATA.stats.todayCount||0):0; }
 function heartFull(){ return '<svg viewBox="-2 -2 36 34"><path d="M23.6 2c-3.4 0-6.3 2.7-7.6 5-1.3-2.3-4.2-5-7.6-5C3.8 2 0 5.6 0 10.2 0 17 8 22 16 27.5 24 22 32 17 32 10.2 32 5.6 28.2 2 23.6 2z" fill="#ff5d6c" stroke="#23263d" stroke-width="2.4" stroke-linejoin="round"/><ellipse cx="9" cy="9" rx="3.4" ry="2.3" fill="#ffffff" opacity="0.6" transform="rotate(-20 9 9)"/></svg>'; }
 function heartEmpty(){ return '<svg viewBox="-2 -2 36 34"><path d="M23.6 2c-3.4 0-6.3 2.7-7.6 5-1.3-2.3-4.2-5-7.6-5C3.8 2 0 5.6 0 10.2 0 17 8 22 16 27.5 24 22 32 17 32 10.2 32 5.6 28.2 2 23.6 2z" fill="#e6e9f2" stroke="#aab0c4" stroke-width="2.4" stroke-linejoin="round"/></svg>'; }
@@ -566,7 +749,7 @@ function renderHome(){ var s=DATA.stats, medals=unlockedCount();
    +'<div class="section-title">ELIGE TU MUNDO</div><div class="grid">'
    +modeCard("var(--purple)","clock","Leer la hora","¿Qué hora es?","selLeer()")
    +modeCard("var(--green)","target","Analógico y digital","Pásalo a números","selDigital()")
-   +modeCard("var(--orange)","bolt","¿Cuánto falta?","Suma y resta tiempo","selFalta()")
+   +modeCard("var(--orange)","bolt","Avanzar el reloj","Suma minutos paso a paso","selFalta()")
    +modeCard("var(--pink)","sun","Partes del día","Mañana, tarde, noche","selPartes()")
    +modeCard("var(--teal)","clock","Tu reloj analógico","Aprende a usarlo","studyClock('analog')")
    +modeCard("var(--red)","target","Tu reloj digital","Aprende a usarlo","studyClock('digital')")
@@ -583,7 +766,7 @@ function diffPanel(mode,title,descs){ var keys=["facil","medio","dificil"],label
 }
 function selLeer(){ diffPanel("leer","Leer la hora",["En punto y media","+ y cuarto","Minutos de 5 en 5"]); }
 function selDigital(){ diffPanel("digital","Analógico y digital",["En punto y media","+ y cuarto","Minutos de 5 en 5"]); }
-function selFalta(){ diffPanel("falta","¿Cuánto falta?",["Sumar 15 y 30 min","Varios saltos","Saltos más grandes"]); }
+function selFalta(){ diffPanel("falta","Avanzar el reloj",["Suma 15 y 30 min","Suma entre 10 y 30 min","Cruza a la hora siguiente"]); }
 function selPartes(){ diffPanel("partes","Partes del día",["Mañana, tarde, noche","a.m. / p.m.","Formato 24h"]); }
 var examSel={diff:"medio"};
 function selExam(){ var html=backBar("Examen")+'<div class="panel block"><h2>Prepara tu examen</h2><p class="sub">10 preguntas mezcladas. ¡Saca 10/10 para una medalla!</p><div style="font-weight:900;margin:6px 0 8px">Dificultad</div><div class="choose-row" id="exd">'
@@ -607,11 +790,12 @@ function buildItems(mode,level,n,isExam){ var items=[];
 }
 function startQuiz(mode,level,label,isExam){ var n=10; var items=buildItems(mode,level,n,isExam);
   QUIZ={mode:mode,level:level,label:label,isExam:!!isExam,items:items,index:0,correct:0,count:items.length,answered:false,streak:0,wrong:[]};
+  document.body.classList.add("playing");
   renderQuiz(); window.scrollTo(0,0);
 }
 function renderQuiz(){ var it=QUIZ.items[QUIZ.index], pct=Math.round(QUIZ.index/QUIZ.count*100);
-  var opts=''; for(var i=0;i<it.opts.length;i++){ opts+='<div class="opt-btn" id="opt'+i+'" onclick="answer('+i+')">'+escapeHtml(it.opts[i])+'</div>'; }
-  var ctx=''; if(it.clock){ ctx='<div class="clockwrap">'+clockSVG(it.clock.h,it.clock.m)+'</div>'; }
+  var opts=''; for(var i=0;i<it.opts.length;i++){ opts+='<button type="button" class="opt-btn" id="opt'+i+'" onclick="answer('+i+')">'+escapeHtml(it.opts[i])+'</button>'; }
+  var ctx=''; if(it.clock){ ctx='<div class="clockwrap">'+clockSVG(it.clock.h,it.clock.m)+'</div><div class="quiz-legend"><span><i class="hour"></i>corta = hora</span><span><i class="minute"></i>larga = minutos</span></div>'; }
   var html='<div class="back-bar"><div class="btn ghost sm" onclick="goHome()">⟵ Salir</div><div class="streak"><svg width="16" height="16" viewBox="0 0 24 24" fill="#ff7a00">'+iconPath("flame")+'</svg> x'+QUIZ.streak+'</div></div>'
    +'<div class="quiz-head"><div class="qmeta">'+(QUIZ.isExam?'EXAMEN':'PRÁCTICA')+' · '+(QUIZ.index+1)+'/'+QUIZ.count+'</div><div class="qmeta">'+escapeHtml(QUIZ.label)+'</div></div>'
    +'<div class="progress"><div class="bar" style="width:'+pct+'%"></div></div>'
@@ -625,7 +809,7 @@ function answer(i){ if(!QUIZ||QUIZ.answered) return; var it=QUIZ.items[QUIZ.inde
   if(ok){ DATA.stats.totalCorrect++; QUIZ.correct++; QUIZ.streak++; if(QUIZ.streak>DATA.stats.bestStreak) DATA.stats.bestStreak=QUIZ.streak;
     var _m=it.mode||QUIZ.mode; if(DATA.stats[_m]&&typeof DATA.stats[_m].correct==='number') DATA.stats[_m].correct++;
     fb.className='feedback ok'; fb.textContent=pick(['¡Genial!','¡Correcto!','¡Muy bien!','¡Eres crack!']); sfx('ok'); saveData(); checkAchievements(); setTimeout(nextQ,800);
-  } else { QUIZ.streak=0; QUIZ.wrong.push(it); fb.className='feedback no'; fb.innerHTML='La correcta era <b>'+escapeHtml(it.opts[it.a])+'</b>'; sfx('bad'); saveData(); checkAchievements();
+  } else { QUIZ.streak=0; QUIZ.wrong.push(it); fb.className='feedback no'; fb.innerHTML='La correcta era <b>'+escapeHtml(it.opts[it.a])+'</b>'+(it.hint?'<span class="feedback-hint">'+escapeHtml(it.hint)+'</span>':''); sfx('bad'); saveData(); checkAchievements();
     var c=$("qcard"); c.innerHTML += '<div style="margin-top:14px"><div class="btn red" onclick="nextQ()">Siguiente ➜</div></div>';
   }
 }
@@ -638,7 +822,7 @@ function finishQuiz(){ var score=QUIZ.correct,total=QUIZ.count, stars= score>=to
   saveData(); var nw=checkAchievements(); renderResults(score,total,stars,nw);
 }
 function fmtWrong(it){ return escapeHtml(it.q)+' → '+escapeHtml(it.opts[it.a]); }
-function renderResults(score,total,stars,nw){ sfx(score>=total?'win':'ok'); if(score>=total) confettiBurst();
+function renderResults(score,total,stars,nw){ document.body.classList.remove("playing"); sfx(score>=total?'win':'ok'); if(score>=total) confettiBurst();
   var msg= score>=total?'¡PERFECTO! 🏆': score>=total*0.7?'¡Casi perfecto!': score>=total*0.5?'¡Cada vez mejor!':'¡Sigue practicando!';
   var color= score>=total?'var(--gold)': score>=total*0.5?'var(--green)':'var(--orange)';
   var med=''; if(nw&&nw.length){ med='<div style="margin:14px 0 4px;font-weight:900">¡Medallas nuevas!</div><div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">'; nw.forEach(function(a){ med+='<div style="text-align:center;width:90px">'+medalSVG(a.tier,a.icon,false)+'<div style="font-family:var(--pixel);font-weight:700;font-size:9px;margin-top:2px">'+a.name+'</div></div>'; }); med+='</div>'; }
@@ -652,7 +836,7 @@ function renderMedallas(){ var html=backBar("Mis medallas")+'<div class="panel b
   html+='</div></div>'; $("screen").innerHTML=html; window.scrollTo(0,0);
 }
 function progBlock(title,mode){ var keys=["facil","medio","dificil"],labels=["Fácil","Medio","Difícil"]; var h='<div class="panel block"><h2>'+title+'</h2><div class="pills">'; for(var i=0;i<3;i++){ var st=DATA.stars[mode][keys[i]]||0; h+='<div class="pill" style="cursor:default"><div class="pl">'+labels[i]+'</div><div class="st">'+starStr(st)+'</div></div>'; } return h+'</div></div>'; }
-function renderProgress(){ var s=DATA.stats, html=backBar("Mi progreso")+progBlock("Leer la hora","leer")+progBlock("Analógico y digital","digital")+progBlock("¿Cuánto falta?","falta")+progBlock("Partes del día","partes")
+function renderProgress(){ var s=DATA.stats, html=backBar("Mi progreso")+progBlock("Leer la hora","leer")+progBlock("Analógico y digital","digital")+progBlock("Avanzar el reloj","falta")+progBlock("Partes del día","partes")
    +'<div class="panel block"><h2>Estadísticas</h2><div class="stat-row"><div class="stat">Respondidas <b>'+s.totalAnswered+'</b></div><div class="stat">Aciertos <b>'+s.totalCorrect+'</b></div><div class="stat">Mejor racha <b>'+s.bestStreak+'</b></div><div class="stat">Exámenes <b>'+s.exams.completed+'</b></div><div class="stat">Sesiones <b>'+(s.sessions||0)+'</b></div><div class="stat">Días <b>'+(s.days||0)+'</b></div></div><div style="margin-top:16px"><div class="btn red sm" onclick="confirmReset()">Reiniciar todo el progreso</div></div></div>';
   $("screen").innerHTML=html; window.scrollTo(0,0);
 }
