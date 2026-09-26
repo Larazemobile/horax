@@ -41,15 +41,9 @@ const featureGraphic = `
     <ellipse cx="-57" cy="-84" rx="63" ry="34" fill="#fff" opacity=".34" transform="rotate(-22 -57 -84)"/>
     <path d="M108-118 116-98 136-90 116-82 108-62 100-82 80-90 100-98Z" fill="#fff"/>
   </g>
-  <g transform="translate(465 0)">
+  <g transform="translate(465 32)">
     <text x="0" y="218" font-family="Arial Rounded MT Bold, Arial, sans-serif" font-weight="900" font-size="112" fill="#252844">Hora<tspan fill="#ffb31a">x</tspan></text>
     <text x="4" y="282" font-family="Arial, sans-serif" font-weight="700" font-size="34" fill="#444b76">Aprende a leer el reloj</text>
-    <g transform="translate(96 376)" fill="none" stroke-linecap="round">
-      <circle r="78" fill="#fff" stroke="#252844" stroke-width="10"/>
-      <path d="M0 0V-45" stroke="#252844" stroke-width="10"/>
-      <path d="M0 0 38 30" stroke="#3d9bff" stroke-width="14"/>
-      <circle r="8" fill="#ff5d6c" stroke="#252844" stroke-width="4"/>
-    </g>
   </g>
 </svg>`;
 
