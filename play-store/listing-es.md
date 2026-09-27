@@ -24,6 +24,7 @@ Los niños pueden practicar con relojes analógicos y digitales, avanzar minutos
 
 Qué incluye Horax:
 
+- Curso configurable de 1.º a 4.º de Primaria, desde horas básicas hasta intervalos y formato de 24 horas.
 - Lectura de relojes analógicos, desde horas en punto hasta minutos de cinco en cinco.
 - Conversión entre reloj analógico y hora digital.
 - Ejercicios para sumar minutos y avanzar el reloj.
