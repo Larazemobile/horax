@@ -7,6 +7,7 @@
 - Categoría: Educación
 - Precio inicial: Gratis
 - Contiene anuncios: No
+- Compras en la aplicación: Sí, desbloqueo completo de pago único
 - Público objetivo: 6–8, 9–12
 - Correo de contacto: `orbitakidx@gmail.com`
 - Política de privacidad: `https://horaxapp-orbitakidx.vercel.app/privacy.html`
@@ -31,7 +32,8 @@ Qué incluye Horax:
 - Exámenes, medallas, rachas y mapa de progreso.
 - Perfil y avance guardados en el propio dispositivo.
 - Funcionamiento sin conexión.
-- Sin anuncios, cuentas ni compras en esta versión.
+- Demo gratuita y desbloqueo completo mediante un único pago.
+- Sin anuncios, cuentas ni suscripciones.
 
 Horax está diseñada para practicar de forma autónoma, con controles grandes, ayudas visuales y una presentación adaptada a móviles y tabletas.
 
